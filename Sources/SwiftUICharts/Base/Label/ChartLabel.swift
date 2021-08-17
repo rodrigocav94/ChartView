@@ -77,7 +77,7 @@ public struct ChartLabel: View {
 	///   - type: Which `ChartLabelType` to use
     public init (_ title: String,
                  type: ChartLabelType = .title,
-                 format: String = "%.g") {
+                 format: String = "%.01f") {
         self.title = title
         labelType = type
         self.format = format
@@ -97,7 +97,7 @@ public struct ChartLabel: View {
                     self.textToDisplay = self.title
                 }
                 .onReceive(self.chartValue.objectWillChange) { _ in
-                    self.textToDisplay = self.chartValue.interactionInProgress ? String(format: format, self.chartValue.currentValue)+" New Kanji" : self.title
+                    self.textToDisplay = self.chartValue.interactionInProgress ? String(format: format, self.chartValue.currentValue) : self.title
                 }
             if !self.chartValue.interactionInProgress {
                 Spacer()
